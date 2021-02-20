@@ -6,8 +6,6 @@ import http.cookiejar as cookie
 import mechanize
 import requests
 
-import logging
-
 
 class Extractor:
     def __init__(self, url):
@@ -15,6 +13,9 @@ class Extractor:
 
         """
         self._url = url
+        self._parser = 'html.parser'
+        self._resp = urllib.request.urlopen(self._url)
+        self._soup = BeautifulSoup(self._resp, self._parser)
 
     def get_title(self):
         """
@@ -45,11 +46,7 @@ class Extractor:
 
         """
         links = []
-        parser = 'html.parser'  # or 'lxml' (preferred) or 'html5lib', if installed
-        resp = urllib.request.urlopen(self._url)
-        soup = BeautifulSoup(resp, parser, from_encoding=resp.info().get_param('charset'))
-
-        for link in soup.find_all('a', href=True):
+        for link in self._soup.find_all('a', href=True):
             if "http" in link['href']:
                 links.append(link['href'])
 
@@ -60,7 +57,6 @@ class Extractor:
         Extract all inaccessible link in the page
 
         """
-
         inaccessible_link = []
         for link in links:
             return_value = requests.get(link)
@@ -75,9 +71,8 @@ class Extractor:
         """
         level_heading = {}
         levels = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
-        soup = BeautifulSoup(self._url, 'html.parser')
         for level in levels:
-            headings = soup.find_all(level)
+            headings = self._soup.find_all(level)
             headings_count = len(headings)  # Gets the number of <h1> tags
             level_heading[level] = headings_count
         return level_heading
@@ -93,5 +88,4 @@ class Extractor:
         output["headings per level"] = self.get_headings_count_per_level()
         output["inaccessible links"] = self.get_inaccesible_links(output["All links"])
         output["login from present"] = self.check_if_login_form_present()
-        #print(output)
         return output
