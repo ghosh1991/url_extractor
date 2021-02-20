@@ -1,15 +1,21 @@
+"""   Url data extractor """
+
 from urllib.request import urlopen
-from lxml.html import parse
-from bs4 import BeautifulSoup
 import urllib.request
 import http.cookiejar as cookie
+from lxml.html import parse
+from bs4 import BeautifulSoup
 import mechanize
 import requests
 
 
 class Extractor:
+    """
+    Extractor class for Url data extractor
+    """
     def __init__(self, url):
         """
+        Init method to initilize the object
 
         """
         self._url = url
@@ -22,8 +28,8 @@ class Extractor:
         Extract the tile from web page
         """
         page = urlopen(self._url)
-        p = parse(page)
-        return p.find(".//title").text
+        parse_page = parse(page)
+        return parse_page.find(".//title").text
 
     def check_if_login_form_present(self):
         """
@@ -52,7 +58,8 @@ class Extractor:
 
         return links
 
-    def get_inaccesible_links(self, links):
+    @staticmethod
+    def get_inaccesible_links(links):
         """
         Extract all inaccessible link in the page
 

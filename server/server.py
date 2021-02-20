@@ -1,3 +1,5 @@
+"""  Server """
+
 from flask import Flask
 from server.blueprint.api import api
 

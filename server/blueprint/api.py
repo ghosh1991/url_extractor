@@ -1,3 +1,5 @@
+"""   API for rest server """
+
 from flask import Blueprint, current_app, request
 import logging
 from flask_api import status

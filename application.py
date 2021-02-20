@@ -1,3 +1,4 @@
+"""  Application entry point """
 from server.server import run_server
 
 
