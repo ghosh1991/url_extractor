@@ -10,9 +10,42 @@ python 3.8
 Please use the following command to install the dependencies
 
 ```
-pip install -r requirements.txt
+pip install requests
 
 ```
+```
+pip install urllib
+
+```
+```
+pip install http
+
+```
+```
+pip install lxml
+
+```
+```
+pip install mechanize
+
+```
+```
+pip install  bs4
+
+```
+```
+pip install Flask
+
+```
+```
+pip install logging
+
+```
+```
+pip install json
+
+```
+
 
 ### Usage
 
@@ -29,5 +62,5 @@ url. Please use POST method to send an url to the application
 Below example will post an url to the application
 
 ```
-curl -d "google.com" -X POST http://localhost:8000/url/
+curl -d "http://www.stackoverflow.com" -X POST http://localhost:8000/url/
 ```
