@@ -10,7 +10,6 @@ app.register_blueprint(api)
 
 def run_server():
     """
-
-    :return:
+    The server will be running on 8000 port
     """
     app.run(host='0.0.0.0', port=8000)

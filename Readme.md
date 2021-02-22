@@ -8,41 +8,9 @@ python 3.8
 ### Installation
 
 Please use the following command to install the dependencies
-
+pip install -r requirements.txt
 ```
-pip install requests
-
-```
-```
-pip install urllib
-
-```
-```
-pip install http
-
-```
-```
-pip install lxml
-
-```
-```
-pip install mechanize
-
-```
-```
-pip install  bs4
-
-```
-```
-pip install Flask
-
-```
-```
-pip install logging
-
-```
-```
-pip install json
+pip install -r requirements.txt
 
 ```
 

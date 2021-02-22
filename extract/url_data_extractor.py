@@ -37,11 +37,11 @@ class Extractor:
 
         """
         try:
-            cj = cookie.CookieJar()
-            br = mechanize.Browser()
-            br.set_cookiejar(cj)
-            br.open(self._url)
-            br.select_form(nr=0)
+            cookie_jar = cookie.CookieJar()
+            browser = mechanize.Browser()
+            browser.set_cookiejar(cookie_jar)
+            browser.open(self._url)
+            browser.select_form(nr=0)
             return True
         except Exception:
             return False
@@ -77,7 +77,7 @@ class Extractor:
 
         """
         level_heading = {}
-        levels = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+        levels = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'li', 'b', 'nav', 'ol', 'div', 'b', 'sub', 'q', 'form']
         for level in levels:
             headings = self._soup.find_all(level)
             headings_count = len(headings)  # Gets the number of <h1> tags
