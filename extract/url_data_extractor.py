@@ -77,7 +77,7 @@ class Extractor:
 
         """
         level_heading = {}
-        levels = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'li', 'b', 'nav', 'ol', 'div', 'b', 'sub', 'q', 'form']
+        levels = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
         for level in levels:
             headings = self._soup.find_all(level)
             headings_count = len(headings)  # Gets the number of <h1> tags
