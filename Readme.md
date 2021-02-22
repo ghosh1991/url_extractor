@@ -30,5 +30,5 @@ url. Please use POST method to send an url to the application
 Below example will post an url to the application
 
 ```
-curl -d "http://www.stackoverflow.com" -X POST http://localhost:8000/url/
+curl -d "http://www.google.com" -X POST http://localhost:8000/url/
 ```
