@@ -4,7 +4,7 @@ from urllib.request import urlopen
 import urllib.request
 import http.cookiejar as cookie
 from lxml.html import parse
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Doctype
 import mechanize
 import requests
 
@@ -84,6 +84,20 @@ class Extractor:
             level_heading[level] = headings_count
         return level_heading
 
+    def get_html_version(self):
+        """
+        Get html version from Doctype
+
+        :return:
+        """
+        version = self._soup.find_all(string="html")
+        html_version = next(item for item in version if isinstance(item, Doctype))
+        if html_version == "html":
+            html_version = "HTML5"
+        else:
+            html_version  = "HTML4.1"
+        return html_version
+
     def extract_all_data(self):
         """
         Extract all required data and return it as json format
@@ -95,4 +109,5 @@ class Extractor:
         output["headings per level"] = self.get_headings_count_per_level()
         output["inaccessible links"] = self.get_inaccesible_links(output["All links"])
         output["login from present"] = self.check_if_login_form_present()
+        output["html version"] = self.get_html_version()
         return output
